@@ -2,16 +2,20 @@ import React, { Fragment } from "react";
 import { Rnd } from "react-rnd";
 
 const style = {
-  border: "solid 1px #fff",
   background: "#fff"
 };
 
 const styleSelected = {
-  borderWidth: "1.5px",
-  borderColor: "rrr",
-  borderStyle: "dashed",
-  background: "#fff"
+  border: '1px dashed #333',
+  background: '#fff'
 };
+
+const resizeHandleClassName = 'handle';
+const resizeHandleStyle = {
+  width: '10px',
+  height: '10px',
+};
+const posLength = '-12px';
 
 export default ({
   items: { present: presentItems },
@@ -34,6 +38,7 @@ export default ({
     {presentItems.map((item, index) => (
       <Rnd
         key={item.id}
+        className={`rnd ${selectedItemId === item.id ? 'rnd-selected' : ''}`}
         style={selectedItemId === item.id ? styleSelected : style}
         size={{ width: item.width, height: item.height }}
         default={{ x: item.x, y: item.y }}
@@ -50,6 +55,34 @@ export default ({
           updateItems(newItems, newItems[index].id);
         }}
         bounds="parent"
+        resizeHandleClasses={{
+          topLeft: resizeHandleClassName,
+          topRight: resizeHandleClassName,
+          bottomLeft: resizeHandleClassName,
+          bottomRight: resizeHandleClassName
+        }}
+        resizeHandleStyles={{
+          topLeft: {
+            ...resizeHandleStyle,
+            top: posLength,
+            left: posLength
+          },
+          topRight: {
+            ...resizeHandleStyle,
+            top: posLength,
+            right: posLength
+          },
+          bottomLeft: {
+            ...resizeHandleStyle,
+            bottom: posLength,
+            left: posLength
+          },
+          bottomRight: {
+            ...resizeHandleStyle,
+            bottom: posLength,
+            right: posLength
+          }
+        }}
       >
         <div
           style={{
@@ -61,6 +94,20 @@ export default ({
         >
           {item.text}
         </div>
+        <style global jsx>
+          {`
+            .rnd:hover {
+              border: 1px dashed #333;
+              background: #fff;
+            }
+            .rnd:hover .handle {
+              border: 1px solid #333 !important;
+            }
+            .rnd-selected .handle {
+              border: 1px solid #333 !important;
+            }
+          `}
+        </style>
       </Rnd>
     ))}
   </Fragment>
