@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import CursorPosition from "react-cursor-position";
 import shortid from "shortid";
 import useUndo from "use-undo";
@@ -54,7 +54,7 @@ export default () => {
   };
 
   return (
-    <div>
+    <Fragment>
       <button onClick={() => setCursorPosActive(true)}>Add Item</button>
       <button onClick={undoItems} disabled={!canUndo}>Undo</button>
       <button onClick={redoItems} disabled={!canRedo}>Redo</button>
@@ -64,6 +64,6 @@ export default () => {
       >
         <Canvas {...canvasProps} />
       </CursorPosition>
-    </div>
+    </Fragment>
   );
 };
