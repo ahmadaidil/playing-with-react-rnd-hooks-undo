@@ -17,7 +17,7 @@ const newItem = ({ x, y }) => ({
 export default () => {
   const [
     items,
-    { set: setItems, reset: resetItems, undo: undoItems, redo: redoItems }
+    { set: setItems, undo: undoItems, redo: redoItems, canUndo, canRedo, }
   ] = useUndo([]);
   const [selectedItemId, setSelectedItemId] = useState("");
   const [cursorPosActive, setCursorPosActive] = useState(false);
@@ -57,6 +57,8 @@ export default () => {
     <div>
       cursorPosActive, <div>{`${cursorPosActive}`}</div>
       <button onClick={() => setCursorPosActive(true)}>Add Item</button>
+      <button onClick={undoItems} disabled={!canUndo}>Undo</button>
+      <button onClick={redoItems} disabled={!canRedo}>Redo</button>
       <CursorPosition
         isEnabled={cursorPosActive}
         mapChildProps={({ position }) => ({ point: position })}
