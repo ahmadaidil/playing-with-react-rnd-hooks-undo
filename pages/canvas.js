@@ -101,10 +101,10 @@ export default ({
               background: #fff;
             }
             .rnd:hover .handle {
-              border: 1px solid #333 !important;
+              border: 1px solid #333;
             }
             .rnd-selected .handle {
-              border: 1px solid #333 !important;
+              border: 1px solid #333;
             }
           `}
         </style>
