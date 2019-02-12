@@ -55,7 +55,6 @@ export default () => {
 
   return (
     <div>
-      cursorPosActive, <div>{`${cursorPosActive}`}</div>
       <button onClick={() => setCursorPosActive(true)}>Add Item</button>
       <button onClick={undoItems} disabled={!canUndo}>Undo</button>
       <button onClick={redoItems} disabled={!canRedo}>Redo</button>
