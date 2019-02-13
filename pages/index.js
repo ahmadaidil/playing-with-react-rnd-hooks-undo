@@ -35,7 +35,7 @@ export default () => {
   };
 
   const updateItems = (items, id) => {
-    setItems([...items]);
+    setItems(items);
     setSelectedItemId(id);
   };
 

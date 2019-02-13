@@ -41,17 +41,21 @@ export default ({
         className={`rnd ${selectedItemId === item.id ? 'rnd-selected' : ''}`}
         style={selectedItemId === item.id ? styleSelected : style}
         size={{ width: item.width, height: item.height }}
-        default={{ x: item.x, y: item.y }}
+        position={{ x: item.x, y: item.y }}
         onDragStop={(e, d) => {
-          const newItems = presentItems;
-          newItems[index].x = d.x;
-          newItems[index].y = d.y;
+          const newItems = [...presentItems];
+          const newItem = { ...newItems[index] };
+          newItem.x = d.x;
+          newItem.y = d.y;
+          newItems[index] = newItem;
           updateItems(newItems, newItems[index].id);
         }}
         onResize={(e, dir, ref, delta, pos) => {
-          const newItems = presentItems;
-          newItems[index].width = ref.style.width;
-          newItems[index].height = ref.style.height;
+          const newItems = [...presentItems];
+          const newItem = { ...newItems[index] };
+          newItem.width = ref.style.width;
+          newItem.height = ref.style.height;
+          newItems[index] = newItem;
           updateItems(newItems, newItems[index].id);
         }}
         bounds="parent"
