@@ -3,7 +3,7 @@ import CursorPosition from "react-cursor-position";
 import shortid from "shortid";
 import useUndo from "use-undo";
 
-import Canvas from "./canvas";
+import Canvas from "../components/canvas";
 
 const newItem = ({ x, y }) => ({
   id: shortid.generate(),
