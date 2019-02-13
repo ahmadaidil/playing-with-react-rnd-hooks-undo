@@ -1,15 +1,6 @@
 import React, { Fragment } from "react";
 import { Rnd } from "react-rnd";
 
-const style = {
-  background: "#fff"
-};
-
-const styleSelected = {
-  border: "1px dashed #333",
-  background: "#fff"
-};
-
 const resizeHandleClassName = "handle";
 const resizeHandleStyle = {
   width: "10px",
@@ -39,7 +30,6 @@ export default ({
       <Rnd
         key={item.id}
         className={`rnd ${selectedItemId === item.id ? "rnd-selected" : ""}`}
-        style={selectedItemId === item.id ? styleSelected : style}
         size={{ width: item.width, height: item.height }}
         position={{ x: item.x, y: item.y }}
         onDragStop={(e, d) => {
@@ -100,14 +90,14 @@ export default ({
         </div>
         <style global jsx>
           {`
-            .rnd:hover {
-              border: 1px dashed #333;
+            .rnd {
               background: #fff;
             }
-            .rnd:hover .handle {
-              border: 1px solid #333;
+            .rnd.rnd-selected, .rnd:hover {
+              border: 1px dashed #333;
             }
-            .rnd-selected .handle {
+            .rnd-selected .handle,
+            .rnd:hover .handle {
               border: 1px solid #333;
             }
           `}
