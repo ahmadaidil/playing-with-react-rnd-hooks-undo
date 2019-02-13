@@ -32,22 +32,10 @@ export default ({
         className={`rnd ${selectedItemId === item.id ? "rnd-selected" : ""}`}
         size={{ width: item.width, height: item.height }}
         position={{ x: item.x, y: item.y }}
-        onDragStop={(e, d) => {
-          const newItems = [...presentItems];
-          const newItem = { ...newItems[index] };
-          newItem.x = d.x;
-          newItem.y = d.y;
-          newItems[index] = newItem;
-          updateItems(newItems, newItems[index].id);
-        }}
-        onResize={(e, dir, ref, delta, pos) => {
-          const newItems = [...presentItems];
-          const newItem = { ...newItems[index] };
-          newItem.width = ref.style.width;
-          newItem.height = ref.style.height;
-          newItems[index] = newItem;
-          updateItems(newItems, newItems[index].id);
-        }}
+        onDragStop={(e, { x, y }) => updateItems(presentItems, index, { x, y })}
+        onResize={(e, dir, { style: { width, height } }, delta, pos) =>
+          updateItems(presentItems, index, { width, height })
+        }
         bounds="parent"
         resizeHandleClasses={{
           topLeft: resizeHandleClassName,
@@ -93,7 +81,8 @@ export default ({
             .rnd {
               background: #fff;
             }
-            .rnd.rnd-selected, .rnd:hover {
+            .rnd.rnd-selected,
+            .rnd:hover {
               border: 1px dashed #333;
             }
             .rnd-selected .handle,

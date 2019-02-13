@@ -34,9 +34,12 @@ export default () => {
     setSelectedItemId("");
   };
 
-  const updateItems = (items, id) => {
-    setItems(items);
-    setSelectedItemId(id);
+  const updateItems = (items, index, newProps = {}) => {
+    const newItems = [...items];
+    const newItem = { ...newItems[index], ...newProps };
+    newItems[index] = newItem;
+    setItems(newItems);
+    setSelectedItemId(newItem.id);
   };
 
   const setSelectedItem = id => {
