@@ -17,7 +17,7 @@ const newItem = ({ x, y }) => ({
 export default () => {
   const [
     items,
-    { set: setItems, undo: undoItems, redo: redoItems, canUndo, canRedo, }
+    { set: setItems, undo: undoItems, redo: redoItems, canUndo, canRedo }
   ] = useUndo([]);
   const [selectedItemId, setSelectedItemId] = useState("");
   const [cursorPosActive, setCursorPosActive] = useState(false);
@@ -56,8 +56,12 @@ export default () => {
   return (
     <Fragment>
       <button onClick={() => setCursorPosActive(true)}>Add Item</button>
-      <button onClick={undoItems} disabled={!canUndo}>Undo</button>
-      <button onClick={redoItems} disabled={!canRedo}>Redo</button>
+      <button onClick={undoItems} disabled={!canUndo}>
+        Undo
+      </button>
+      <button onClick={redoItems} disabled={!canRedo}>
+        Redo
+      </button>
       <CursorPosition
         isEnabled={cursorPosActive}
         mapChildProps={({ position }) => ({ point: position })}

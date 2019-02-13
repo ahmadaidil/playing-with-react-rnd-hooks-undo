@@ -6,16 +6,16 @@ const style = {
 };
 
 const styleSelected = {
-  border: '1px dashed #333',
-  background: '#fff'
+  border: "1px dashed #333",
+  background: "#fff"
 };
 
-const resizeHandleClassName = 'handle';
+const resizeHandleClassName = "handle";
 const resizeHandleStyle = {
-  width: '10px',
-  height: '10px',
+  width: "10px",
+  height: "10px"
 };
-const posLength = '-12px';
+const posLength = "-12px";
 
 export default ({
   items: { present: presentItems },
@@ -38,7 +38,7 @@ export default ({
     {presentItems.map((item, index) => (
       <Rnd
         key={item.id}
-        className={`rnd ${selectedItemId === item.id ? 'rnd-selected' : ''}`}
+        className={`rnd ${selectedItemId === item.id ? "rnd-selected" : ""}`}
         style={selectedItemId === item.id ? styleSelected : style}
         size={{ width: item.width, height: item.height }}
         position={{ x: item.x, y: item.y }}
