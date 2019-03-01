@@ -33,9 +33,9 @@ export default ({
         size={{ width: item.width, height: item.height }}
         position={{ x: item.x, y: item.y }}
         onDragStop={(e, { x, y }) => updateItems(presentItems, index, { x, y })}
-        onResizeStop={(e, dir, { style: { width, height } }, delta, pos) =>
-          updateItems(presentItems, index, { width, height })
-        }
+        onResize={(e, dir, { style: { width, height } }, delta, pos) => {
+          updateItems(presentItems, index, { width, height, ...pos });
+        }}
         bounds="parent"
         resizeHandleClasses={{
           topLeft: resizeHandleClassName,
