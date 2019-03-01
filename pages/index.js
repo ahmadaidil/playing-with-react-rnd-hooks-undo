@@ -31,7 +31,9 @@ export default () => {
 
   const addNewItem = position => {
     if (cursorPosActive) {
-      const item = newItem(position);
+      const x = position.x - 100;
+      const y = position.y - 100;
+      const item = newItem({ x, y });
       setItems([...presentItems, item]);
       setCursorPosActive(false);
       setSelectedItemId(item.id);
@@ -42,7 +44,7 @@ export default () => {
 
   const updateItems = (items, index, newProps = {}) => {
     const newItems = [...items];
-    const newItem = { ...newItems[index], ...newProps };
+    const newItem = { ...items[index], ...newProps };
     newItems[index] = newItem;
     setItems(newItems);
     setSelectedItemId(newItem.id);
